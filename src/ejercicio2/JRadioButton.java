@@ -170,13 +170,25 @@ public class JRadioButton extends JFrame {
 		radRespuesta3.setText(preguntaActual.getRespuesta3());
 
 		// codigo que agrega respuestas vacias a la lista de respuestas
-		ListaRespuestasSeleccionadas.add("0");//0
-		ListaRespuestasSeleccionadas.add("1");//1
-		ListaRespuestasSeleccionadas.add("2");//2
-		ListaRespuestasSeleccionadas.add("3");//3
-		ListaRespuestasSeleccionadas.add("4");//4
+		ListaRespuestasSeleccionadas.add("");//0
+		ListaRespuestasSeleccionadas.add("");//1
+		ListaRespuestasSeleccionadas.add("");//2
+		ListaRespuestasSeleccionadas.add("");//3
+		ListaRespuestasSeleccionadas.add("");//4
+		
 		
 		JButton btnAnterior = new JButton("Anterior");
+		JButton btnSiguiente = new JButton("Siguiente");
+		
+		btnAnterior.setEnabled(false);//desactiva el boton porque la primer pregunta no tiene anterior
+		btnAnterior.setBounds(10, 140, 89, 23);
+		contentPane.add(btnAnterior);
+		btnSiguiente.setBounds(109, 140, 89, 23);
+		contentPane.add(btnSiguiente);
+		
+
+		
+		
 		btnAnterior.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -203,6 +215,14 @@ public class JRadioButton extends JFrame {
 					int num = Integer.parseInt(txtNumero.getText())-1;
 					txtNumero.setText(num+"");// actualiza el numero de la pregunta
 					Pregunta preguntaActual = new Pregunta(); //instancia una nueva pregunta
+					
+					btnAnterior.setEnabled(true);
+					btnSiguiente.setEnabled(true);
+					if(num==1)
+					{
+						btnAnterior.setEnabled(false);
+					}
+					
 					//carga los datos de la pregunta enla lista y los muestra en los controles
 					preguntaActual=ListaPreguntas.get(Integer.parseInt(txtNumero.getText())-1);
 					lblPregunta.setText(preguntaActual.getPregunta());
@@ -227,10 +247,7 @@ public class JRadioButton extends JFrame {
 				
 			}
 		});
-		btnAnterior.setBounds(10, 140, 89, 23);
-		contentPane.add(btnAnterior);
 		
-		JButton btnSiguiente = new JButton("Siguiente");
 		btnSiguiente.addMouseListener(new MouseAdapter() 
 		{
 			@Override
@@ -253,9 +270,16 @@ public class JRadioButton extends JFrame {
 					{
 						ListaRespuestasSeleccionadas.set((Integer.parseInt(txtNumero.getText())-1), radRespuesta3.getText());
 					}
-					
 					int num = Integer.parseInt(txtNumero.getText())+1;
 					txtNumero.setText(num+"");// actualiza el numero de la pregunta
+					
+					btnAnterior.setEnabled(true);
+					btnSiguiente.setEnabled(true);
+					if(num==5)
+					{
+						btnSiguiente.setEnabled(false);
+					}
+					
 					Pregunta preguntaActual = new Pregunta(); //instancia una nueva pregunta
 					//carga los datos de la pregunta enla lista y los muestra en los controles
 					preguntaActual=ListaPreguntas.get(Integer.parseInt(txtNumero.getText())-1);
@@ -280,8 +304,6 @@ public class JRadioButton extends JFrame {
 				}
 			}
 		});
-		btnSiguiente.setBounds(109, 140, 89, 23);
-		contentPane.add(btnSiguiente);
 		
 		JButton btnEvaluar = new JButton("Evaluar");
 		btnEvaluar.addMouseListener(new MouseAdapter() 
