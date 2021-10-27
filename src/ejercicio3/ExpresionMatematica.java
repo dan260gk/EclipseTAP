@@ -96,20 +96,25 @@ public class ExpresionMatematica extends JFrame
 						}
 					}
 				}
-				if(unaPila.isEmpty()&&strRespuesta=="")
+				if(strRespuesta=="")
 				{
-					strRespuesta="EXPRESION CORRECTA!\n";
-				}
-				else
-				{
-					if(unaPila.size()>1)
+					if(unaPila.isEmpty())
 					{
-						strRespuesta="EXPRESION INCORRECTA! \n\nFaltaron varios parentesis de cierre \n"+strError;
+						strRespuesta="EXPRESION CORRECTA!\n";
 					}
 					else
 					{
-						strRespuesta="EXPRESION INCORRECTA! \n\nFalto un parentesis de cierre \n"+strError;
-					}
+						if(unaPila.size()>1)
+						{
+							strRespuesta="EXPRESION INCORRECTA! \n\nFaltaron varios parentesis de cierre \n"+strError;
+						}
+						else
+						{
+							strRespuesta="EXPRESION INCORRECTA! \n\nFalto un parentesis de cierre \n"+strError;
+						}
+				}
+				
+				
 					
 					
 				}
