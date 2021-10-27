@@ -88,6 +88,7 @@ public class ExpresionMatematica extends JFrame
 						if(unaPila.empty())
 						{
 							strRespuesta="EXPRESION INCORRECTA! \n\nFalto un parentesis de apertura \n"+strError;
+							break;
 						}
 						else
 						{
@@ -101,10 +102,16 @@ public class ExpresionMatematica extends JFrame
 				}
 				else
 				{
-					if(strRespuesta=="")
+					if(unaPila.size()>1)
+					{
+						strRespuesta="EXPRESION INCORRECTA! \n\nFaltaron varios parentesis de cierre \n"+strError;
+					}
+					else
 					{
 						strRespuesta="EXPRESION INCORRECTA! \n\nFalto un parentesis de cierre \n"+strError;
 					}
+					
+					
 				}
 				JOptionPane.showMessageDialog(null, strRespuesta);
 			}
